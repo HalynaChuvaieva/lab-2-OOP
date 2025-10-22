@@ -11,8 +11,13 @@ src/VisualizationWidget.h
 src/VisualizationWidget.cpp
 src/Controller.h
 src/Controller.cpp
+
 src/structures/LinkedList.h
 src/structures/LinkedList.cpp
+src/structures/Queue.h
+src/structures/Stack.h
+src/structures/BST.h
+
 src/StateManager.h
 src/StateManager.cpp
 )

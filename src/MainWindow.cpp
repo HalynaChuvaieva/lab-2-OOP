@@ -30,7 +30,12 @@ void MainWindow::createUI()
     setCentralWidget(central);
 
     algList = new QListWidget;
-    algList->addItems({"Linked List - Insert", "Linked List - Delete", "Binary Tree - Insert", "Graph - BFS", "Graph - DFS", "Array - Insertion Sort", "Stack - Push/Pop"});
+    algList->addItems({"Linked List - Insert",
+                       "Linked List - Delete",
+                       "Queue - Enqueue/Dequeue",
+                       "Stack - Push/Pop",
+                       "Binary Tree - Insert/Delete",
+                       "Array - Insertion Sort"});
 
     btnStart = new QPushButton("Start Demo");
     btnForward = new QPushButton("Step >>");

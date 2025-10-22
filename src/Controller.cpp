@@ -17,12 +17,22 @@ void Controller::selectAlgorithm(const QString &name)
     current.algName = name;
     current.listData = {1, 2, 3};
     list.clear();
+    queue.clear();
+    stack.clear();
+    bst.clear();
+
     for (int v : current.listData)
+    {
         list.push_back(v);
+        queue.enqueue(v);
+        stack.push(v);
+        bst.insert(v);
+    }
     history.clear();
     historyIndex = -1;
     pushState();
 }
+
 void Controller::startDemo()
 {
     if (current.algName.contains("Linked List"))
@@ -33,46 +43,45 @@ void Controller::startDemo()
 
 void Controller::stepForward()
 {
-    if (current.algName == "Linked List - Insert")
+    if (current.algName.contains("Linked List - Insert"))
     {
         int val = 10 + current.currentStep;
         list.insert_at(1, val);
         current.listData = list.toVector();
-        current.currentStep++;
-        pushState();
     }
-    else if (current.algName == "Linked List - Delete")
+    else if (current.algName.contains("Linked List - Delete"))
     {
         if (!list.empty())
             list.remove_at(0);
         current.listData = list.toVector();
-        current.currentStep++;
-        pushState();
     }
-    else if (current.algName == "Array - Insertion Sort")
+    else if (current.algName.contains("Queue"))
     {
-        int n = current.listData.size();
-        if (n > 1 && current.currentStep < n)
-        {
-            int i = current.currentStep;
-            int key = current.listData[i];
-            int j = i - 1;
-            while (j >= 0 && current.listData[j] > key)
-            {
-                current.listData[j + 1] = current.listData[j];
-                j--;
-            }
-            current.listData[j + 1] = key;
-            current.currentStep++;
-            pushState();
-        }
+        if (current.currentStep % 2 == 0)
+            queue.enqueue(100 + current.currentStep);
+        else
+            queue.dequeue();
+        current.listData = queue.toVector();
     }
-    else if (current.algName == "Graph - BFS")
+    else if (current.algName.contains("Stack"))
     {
-        current.listData.push_back(100 + current.currentStep);
-        current.currentStep++;
-        pushState();
+        if (current.currentStep % 2 == 0)
+            stack.push(200 + current.currentStep);
+        else
+            stack.pop();
+        current.listData = stack.toVector();
     }
+    else if (current.algName.contains("Binary Tree"))
+    {
+        if (current.currentStep % 2 == 0)
+            bst.insert(50 + current.currentStep);
+        else
+            bst.remove(50 + current.currentStep - 2);
+        current.listData = bst.inorder();
+    }
+
+    current.currentStep++;
+    pushState();
 }
 void Controller::stepBackward()
 {

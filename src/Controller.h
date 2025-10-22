@@ -5,11 +5,13 @@
 #include <vector>
 #include <optional>
 #include "structures/LinkedList.h"
+#include "structures/Queue.h"
+#include "structures/Stack.h"
+#include "structures/BST.h"
 
 struct DemoState
 {
     QString algName;
-    // simple serialized data for demo purposes
     std::vector<int> listData;
     int currentStep = 0;
 };
@@ -36,6 +38,9 @@ private:
     int historyIndex = -1;
     DemoState current;
     LinkedList list;
+    Queue queue;
+    Stack stack;
+    BST bst;
     int speedMs = 500;
     bool autoPlay = false;
 };
