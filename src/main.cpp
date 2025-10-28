@@ -1,4 +1,9 @@
 #include <QApplication>
+#include "LinkedList.h"
+#include "Stack.h"
+#include "Queue.h"
+#include "BST.h"
+#include "Graph.h"
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
